@@ -1,0 +1,45 @@
+{% extends 'header.html.twig' %}
+
+{% block title %}Offre index{% endblock %}
+
+{% block body %}
+    <h1>Offre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Categ</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Logo</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offre in offres %}
+            <tr>
+                <td>{{ offre.id }}</td>
+                <td>{{ offre.categ }}</td>
+                <td>{{ offre.nom }}</td>
+                <td>{{ offre.email }}</td>
+                <td><img src="{{ asset('picture/' ~ offre.logo) }}" alt="" class="img-responsive"></td>
+                <td>{{ offre.title }}</td>
+                <td>{{ offre.description }}</td>
+                <td>
+                    <a href="{{ path('offre_show', {'id': offre.id}) }}">show</a>
+                    <a href="{{ path('offre_edit', {'id': offre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('offre_new') }}">Create new</a>
+{% endblock %}

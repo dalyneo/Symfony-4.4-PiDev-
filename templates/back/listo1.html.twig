@@ -1,0 +1,39 @@
+{% block content %}
+    <div class="content">
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="card">
+    <div class="card-header card-header-primary">
+        <h1 align="center">Recruteurs</h1>
+        <h4 align="center"> List of Recruteur </h4>
+    </div>
+    <div class="card-body">
+    <div class="table-responsive">
+    <table class="table" border="3">
+        <thead class=" text-primary">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>First name</th>
+            <th>Email</th>
+            <th>password</th>
+            <th>type</th>
+            <th>Skills</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for recruteur in recruteurs %}
+            <tr>
+                <td>{{ recruteur.id }}</td>
+                <td>{{ recruteur.nom }} </td>
+                <td>{{ recruteur.prenom }} </td>
+                <td>{{ recruteur.mail }}</td>
+                <td>{{ recruteur.mdp }}</td>
+                <td>{{ recruteur.type }}</td>
+                <td>{{ recruteur.competence }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

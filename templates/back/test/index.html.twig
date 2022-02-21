@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test index{% endblock %}
+
+{% block content %}
+    <h1>Test index</h1>
+<table class="table" id="tableac">
+    <script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
+    <input type="text" class="form-control" placeholder="chercher" id="search">
+
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Q1</th>
+                <th>R1</th>
+                <th>Q2</th>
+                <th>R2</th>
+                <th>Q3</th>
+                <th>R3</th>
+                <th>Q4</th>
+                <th>R4</th>
+                <th>Q5</th>
+                <th>R5</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for test in tests %}
+            <tr>
+                <td>{{ test.id }}</td>
+                <td>{{ test.nom }}</td>
+                <td>{{ test.q1 }}</td>
+                <td>{{ test.r1 }}</td>
+                <td>{{ test.q2 }}</td>
+                <td>{{ test.r2 }}</td>
+                <td>{{ test.q3 }}</td>
+                <td>{{ test.r3 }}</td>
+                <td>{{ test.q4 }}</td>
+                <td>{{ test.r4 }}</td>
+                <td>{{ test.q5 }}</td>
+                <td>{{ test.r5 }}</td>
+                <td>
+                    <a href="{{ path('test_show', {'id': test.id}) }}">show</a>
+                    <a href="{{ path('test_edit', {'id': test.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+
+        <script>
+            $(document).ready(function(){
+                $('#search').keyup(function(){
+                    search_table($(this).val());
+                });
+                function search_table(value){
+                    $('#tableac tbody tr').each(function(){
+                        var found = 'false';
+                        $(this).each(function(){
+                            if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                            {
+                                found = 'true';
+                            }
+                        });
+                        if(found == 'true')
+                        {
+                            $(this).show();
+
+                        }
+                        else
+                        {
+                            $(this).hide();
+
+                        }
+                    });
+                }
+            });
+        </script>
+        </tbody>
+    </table>
+    <a class="btn btn-success" href="{{ path('listo69') }}">Create pdf</a>
+
+    <a href="{{ path('test_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,22 @@
+{# templates/front/offre/confirm.html.twig #}
+ {% for postuler in postulers %}
+     {% apply inline_css %}
+     <style>
+         {# here, define your CSS styles as usual #}
+         h3 {
+             color: #333;
+         }
+
+     </style>
+<h3>Bonjour {{ postuler.recruteur.nom }}!</h3>
+     {% endapply %}
+     <div>After talking to your (specific person), I am writing to confirm for the offer ( {{ postuler.offre.nom }} ).
+
+    Pending our meeting, please accept,
+    <p>
+        <a href="http://127.0.0.1:8000{{ path('accepte', {'id':postuler.recruteur.id}) }}" class="btn btn-success">Click here to Accept </a>
+        (this link is valid until {{ "now"|date_modify("+3 day")|date("m/d/Y") }} )
+    </p>
+    Hope to meet you.</div>
+<div>EspritWork Team ! Merci !</div>
+{% endfor %}

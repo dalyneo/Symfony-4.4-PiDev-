@@ -1,0 +1,44 @@
+{% extends 'header.html.twig' %}
+{% block title %}
+    Add Job
+{% endblock %}
+{% block content %}
+    <div class="section db">
+        <div class="container">
+            <div class="page-title text-center">
+                <div class="heading-holder">
+                    <h1>Submit a Offre</h1>
+                </div>
+                <p class="lead">Create Your Offre</p>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <div class="section lb">
+        <div class="container">
+            <div class="row">
+                <div class="content col-md-8">
+
+
+                    <div class="post-padding">
+                        <div class="job-title hidden-sm hidden-xs"><h5>Offre Details</h5></div>
+                        {{ include('front/offre/_form.html.twig', {'button_label': 'Update'}) }}
+                    </div><!-- end post-padding -->
+                </div><!-- end col -->
+
+
+                    <div class="widget clearfix">
+                        <div class="widget-title">
+                            <h4>Offre Domaine</h4>
+                        </div><!-- end widget-title -->
+                        {% for categorie in categories %}
+                        <ul class="check">
+                            <li><a href="{{ path('type',{'type':categorie.id}) }}">{{ categorie.nom }}</a></li>
+                        </ul>
+                        {% endfor %}
+                    </div><!-- end widget -->
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'header.html.twig' %}
+{%  block content %}
+    {{ form_start(form) }}
+    <div class="section wb">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <h4>Create New Account</h4>
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <form class="submit-form customform loginform">
+
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                {{ form_row(form.name) }}
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" ><i class="fa fa-envelope-o"></i></span>
+                {{ form_row(form.email) }}
+
+
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i ></i></span>
+                {{ form_row(form.password) }}
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                {{ form_row(form.photo) }}
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                {{ form_row(form.photocover) }}
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                {{ form_row(form.title) }}
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                {{ form_row(form.linkedin) }}
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                {{ form_row(form.skills) }}
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                {{ form_row(form.country) }}
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                {{ form_row(form.prix) }}
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                {{ form_row(form.education) }}
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                {{ form_row(form.experience) }}
+            </div>
+    {{ form_widget(form) }}
+    <input value="enregistrer" type="submit" class="btn btn-custom">
+            {{ form_end(form) }}
+        </form>
+            </div>
+
+
+    </div>
+    </div>
+    </div>
+
+
+
+{%  endblock %}

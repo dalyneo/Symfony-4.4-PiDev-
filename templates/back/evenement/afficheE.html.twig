@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des evenement{% endblock %}
+
+{% block content %}
+
+<div class="main-panel">
+
+    <h1>List Of Events</h1>
+
+    <form method="post" action="{{ path('rechercheeventt') }}">
+        <input type="text"  placeholder="Recherche" name ="recherche">
+        <input type="submit" value="recherche"  class="btn btn-primary" >
+
+    </form>
+
+    <table border="2" class="table table-striped">
+
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Nb Participants</th>
+            <th>Nb Like</th>
+            <th>Nb Dislike</th>
+            <th>Delete</th>
+
+        </tr>
+
+        <tr {% for e in event %} >
+
+            <td>{{ e.id }}</td>
+            <td>{{ e.nom }}</td>
+            <td>{{ e.idcat.nom }}</td>
+            <td>{{ e.date|date('m/d/Y') }}</td>
+            <td>{{ e.description }}</td>
+            <td>{{ e.nbp}}</td>
+            <td>{{ e.jaime }}</td>
+            <td>{{ e.jaimepas }}</td>
+            <td ><a href="{{ path('supprimeevente',{'id':e.id}) }}"  class="badge badge-danger">Supprimer</a></td>
+
+
+
+        </tr {% endfor %} >
+    </table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'header.html.twig' %}
+
+{% block title %}Test{% endblock %}
+
+{% block content %}
+    <div>
+    <a href="{{ path('calendar_new')}}" class="btn btn-primary">book test</a>
+    <a href="{{ path('calendar1_index')}}" class="btn btn-primary">calendar</a>
+    </div>
+    {% for test in tests %}
+        <div class="all-jobs job-listing freelancer-list clearfix">
+          <div class="job-tab">
+
+            <div class="row">
+           {#  <div class="col-md-2 col-sm-2 col-xs-12">
+                <!--<div class="post-media">
+                    <a href="freelancer-profile.html"><img src="{{ asset('upload/' ) }}" alt="" class="img-responsive img-thumbnail"></a>
+                </div>--><!-- end media -->
+            </div><!-- end col -->#}
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                {# <div class="badge part-badge">{{ formation.formateur }}</div> #}
+                <h3><a href="#" title="">{{ test.nom }}</a></h3>
+                <small>
+                    <div>certified training</div>
+                </small>
+
+
+            </div>
+            <div class="loadmorebutton text-center clearfix">
+                <a href="{{ path('trouver',{'id':test.id}) }}" class="btn btn-primary">participate</a>
+            </div>
+        </div>
+
+
+
+    </div>
+    </div>
+    {% endfor %}
+{% endblock %}

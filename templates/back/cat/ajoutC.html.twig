@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Categorie
+{% endblock %}
+
+{% block content %}
+{{ form_start(form) }}
+    <div class="main-panel">
+        <h1>Add Category</h1>
+
+
+        <div class="form-group">
+
+            <LABEL>Name Of Category*:</LABEL>
+            {{ form_widget(form.nom, {'attr':{'class':'form-control' }})}}
+
+        </div>
+
+  {#   <div class="form-group">
+        <label>Libelle</label>
+        <input type="text" class="form-control" id="libelle" placeholder="Entrez le libelle de la categorie">
+    </div>#}
+
+    <input type="submit" value="Add Category" class="btn btn-danger">
+        <a href="{{ path('affichecatt') }}"><input type="button" value="Liste Des Categories" class="btn btn-danger"></a>
+    </div>
+
+
+{{ form_end(form) }}
+
+
+
+
+{% endblock %}

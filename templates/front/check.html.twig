@@ -1,0 +1,35 @@
+{% extends 'header.html.twig' %}
+{% block title %}Offre Informations{% endblock %}
+{% block content %}
+    {% set value = 0  %}
+    {% for comment in comments %}
+{% set value = value+1 %}
+    {% endfor %}
+    {% for offre in offres %}
+        <div class="container">
+            <div class="well">
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="{{ asset('picture/' ~ offre.logo) }}" alt="" width="130" height="130" ">
+                    </a>
+                    <div class="media-body">
+                        <div class="col-md-6 col-sm-7 col-xs-12">
+                            <div class="badge freelancer-badge">{{ offre.idcategoriy.nom }}</div>
+                            <h3><a href="job-single.html" class="text-primary" title="">{{ offre.nom }}</a></h3>
+                            <p class="text-warning">{{ offre.description }}</p>
+                            <p><a href="{{ path('pos',{'id': offre.id }) }}"><span class="glyphicon glyphicon-modal-window"></span>{{ offre.likes | length }}</a> personnes ont postuler</p>
+                            <p>{{ offre.abn }}<span class="glyphicon glyphicon-eye-open"></span></p>
+                            <a href="{{ path('make',{'id': offre.id }) }}" class="btn btn-primary" ><span class="glyphicon glyphicon-comment"></span>({{value}})</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% if  app.session.get('type')=="recruteur" %}
+        <div style="text-align: center">
+            <a class="btn btn-info" href="{{ path('addjob') }}">Post Offre</a>
+        </div>
+    {% endif %}
+{% endblock %}

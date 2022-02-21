@@ -1,0 +1,12 @@
+{% extends 'header.html.twig' %}
+{% block title %}Edit Offre{% endblock %}
+{% block content %}
+    <h1>Edit Offre</h1>
+<div align="center">
+    {{ include('front/offre/_form.html.twig', {'button_label': 'Update'}) }}
+</div>
+
+    <a href="{{ path('offre1') }}" class="btn btn-success">back to list</a>
+    {{ include('front/offre/delete.html.twig') }}
+
+{% endblock %}

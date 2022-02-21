@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Simple Table</h4>
+                            <p class="card-category"> Here is a subtitle for this table</p>
+                        </div>
+
+                        <div class="card-body">
+                            <a class="btn btn-success" href="{{ path('listfreel') }}">Create pdf</a>
+                            {% for projet in projet %}
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Country
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                        Salary
+                                    </th>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            {{  projet.nomProjet}}
+                                        </td>
+                                        <td>
+                                            {{ projet.jobTime }}
+                                        </td>
+                                        <td>
+                                            {{ projet.user.mail }}
+                                        </td>
+                                        <td>
+                                            {{ projet.jobSalary }}
+                                        </td>
+                                        <td class="text-primary">
+
+                                        </td>
+                                        <td>
+                                            {{ include('back/projet/_delete_form.html.twig') }}
+
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <a href="{{ path('stat') }}" class="btn btn-danger">stat</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

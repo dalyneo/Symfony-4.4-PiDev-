@@ -1,0 +1,23 @@
+{% extends 'header.html.twig' %}
+{% block title %}Offre{% endblock %}
+{% block content %}
+            {% for offre in offres %}
+                <div class="container">
+                    <div class="well">
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" src="{{ asset('picture/' ~ offre.logo) }}" alt="" width="130" height="130" ">
+                            </a>
+                            <div class="media-body">
+                                <div class="col-md-6 col-sm-7 col-xs-12">
+                                    <div class="badge freelancer-badge">{{ offre.idcategoriy.nom }}</div>
+                                    <h3><a href="job-single.html" class="text-primary" title="">{{ offre.nom }}</a></h3>
+                                    <p class="text-warning">{{ offre.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+{% endblock %}

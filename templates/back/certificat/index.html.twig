@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Certificat index{% endblock %}
+
+{% block content %}
+    <h1>Certificat index</h1>
+<table class="table" id="tableac">
+    <script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
+    <input type="text" class="form-control" placeholder="chercher" id="search">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for certificat in certificats %}
+            <tr>
+                <td>{{ certificat.id }}</td>
+                <td>{{ certificat.nom }}</td>
+                <td>
+                    <a href="{{ path('certificat_show', {'id': certificat.id}) }}">show</a>
+                    <a href="{{ path('certificat_edit', {'id': certificat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        <script>
+            $(document).ready(function(){
+                $('#search').keyup(function(){
+                    search_table($(this).val());
+                });
+                function search_table(value){
+                    $('#tableac tbody tr').each(function(){
+                        var found = 'false';
+                        $(this).each(function(){
+                            if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                            {
+                                found = 'true';
+                            }
+                        });
+                        if(found == 'true')
+                        {
+                            $(this).show();
+
+                        }
+                        else
+                        {
+                            $(this).hide();
+
+                        }
+                    });
+                }
+            });
+        </script>
+        </tbody>
+    </table>
+
+    <a href="{{ path('certificat_new') }}">Create new</a>
+{% endblock %}

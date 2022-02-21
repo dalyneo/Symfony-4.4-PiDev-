@@ -1,0 +1,71 @@
+{% extends 'back.html.twig.' %}
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Simple Table</h4>
+                            <p class="card-category"> Here is a subtitle for this table</p>
+                        </div>
+
+                        <div class="card-body">
+                            {% for projet in projet %}
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>
+                                        id
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Country
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                        Salary
+                                    </th>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            {{ projet}}
+                                        </td>
+                                        <td>
+                                            {{  }}
+                                        </td>
+                                        <td>
+                                            {{ projet.jobTime }}
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                        <td class="text-primary">
+
+                                        </td>
+                                        <td>
+                                            {{ include('projet/_delete_form.html.twig') }}
+
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

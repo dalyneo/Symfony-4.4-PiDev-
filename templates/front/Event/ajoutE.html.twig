@@ -1,0 +1,70 @@
+
+{% extends 'header.html.twig' %}
+
+{% block title %}
+    Page Of  Event
+{% endblock %}
+
+{% block content %}
+
+    <div class="section db">
+        <div class="container">
+            <div class="page-title text-center">
+                <div class="heading-holder">
+                    <h1>Add Event </h1>
+                </div>
+
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+
+    {{ form_start(form , {attr: {'novalidate': 'novalidate'}}) }}
+    <div class="form-group">
+        <LABEL>Name Of Event*:</LABEL>
+        {{ form_widget(form.nom, {'attr':{'class':'form-control' }})}}
+        <div class="alert alert-warning" role="alert">
+            {{form_errors(form.nom)}}
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <LABEL>Category Of Event*:</LABEL>
+
+        {{ form_widget(form.idcat)}}
+    </div>
+
+
+    <div class="form-group">
+
+        <LABEL>Date Of Event*:</LABEL>
+
+        {{ form_widget(form.date)}}
+    </div>
+
+    <div class="form-group">
+
+        <LABEL>Description Of Event*:</LABEL>
+
+        {{ form_widget(form.description, {'attr':{'class':'form-control' }})}}
+        <div class="alert alert-warning" role="alert">
+            {{form_errors(form.description)}}
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <LABEL>Email Of User *:</LABEL>
+
+        {{ form_widget(form.email, {'attr':{'class':'form-control' }})}}
+        <div class="alert alert-warning" role="alert">
+            {{form_errors(form.email)}}
+        </div>
+    </div>
+    <input type="submit" value="Add Event" class="btn btn-danger">
+
+
+
+    {{ form_end(form) }}
+{% endblock %}

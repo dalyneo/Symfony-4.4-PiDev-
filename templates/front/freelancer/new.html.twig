@@ -1,0 +1,11 @@
+{% extends 'header.html.twig' %}
+
+{% block title %}New Freelancer{% endblock %}
+
+{% block content %}
+    <h1>Create new Freelancer</h1>
+
+    {{ include('freelancer/_form.html.twig') }}
+
+    <a href="{{ path('freelancer_index') }}">back to list</a>
+{% endblock %}

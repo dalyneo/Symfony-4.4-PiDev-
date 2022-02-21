@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Les forums</h4>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+
+                                <div class="form-group">
+
+
+
+
+                                <hr class="invis">
+
+
+                                <div class="card text-center">
+                                    <form method="post" action="{{ path('rechercheForumBack') }}">
+                                        <input  type="text" name="search"><input class="btn btn-primary" type="submit" value="Recherche">
+                                    </form>
+
+
+
+
+                                    <div class="card-body">
+                                        {% for f in forum %}
+                                            <h1>{{f.theme}}</h1>
+                                            <p class="card-title">{{f.sujet}}</p>
+                                            {% if f.commenters.count>0 %}
+
+                                                ({{f.commenters.count}})
+                                            {% endif %}
+                                            <p class="card-text">{{f.probleme}}</p>
+                                            <p class="card-text">{{ f.date ? f.date|date('d-m-Y H:i:s') : '' }}</p>
+                                            <a class="btn btn-primary" href="{{ path ('de',{'id':f.id}) }}">Effacer</a>
+                                            <a class="btn btn-primary" href="{{ path ('forum_showAd',{'id':f.id}) }}">Afficher</a>
+
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+                                    <li><a class="btn btn-primary" href="{{ path('stats') }}">Statistiques</a></li>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

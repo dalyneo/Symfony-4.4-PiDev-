@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users List{% endblock %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <tr class="row justify-content-start">
+                            <td class="col-3">
+                                <select class="form-control" id="filtre">
+
+                                    <option value="candidat" >Candidat</option>
+                                    <option value="recruteur" >Recruteur</option>
+
+                                </select>
+                            </td>
+                        </tr>
+                        <form class="navbar-form" method="post" action="{{ path('user') }}">
+                            {{ form_start(searchForm) }}
+                            <div class="input-group no-border">
+                                {{ form_widget(searchForm.nom) }}
+                                <button class="btn btn-default btn-round btn-just-icon">
+                                    {{ button_label|default('search1') }}
+                                </button>
+                            </div>
+
+                        </form>
+                        {{ form_end(searchForm) }}
+
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Users</h4>
+                            <p class="card-category"> List of Users</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table" id="tableac">
+                                    <a class="btn btn-success" href="{{ path('listo1') }}">Create pdf</a>
+                                    <a class="btn btn-success" href="{{ path('statuser') }}">Statistique</a>
+                                    <thead class=" text-primary">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>first name</th>
+                                        <th>Email</th>
+                                        <th>password</th>
+                                        <th>type</th>
+                                        <th>image</th>
+                                        <th>skills</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for recruteur in recruteurs %}
+                                        <tr>
+                                            <td>{{ recruteur.id }}</td>
+                                            <td>{{ recruteur.nom }} </td>
+                                            <td>{{ recruteur.prenom }} </td>
+                                            <td>{{ recruteur.mail }}</td>
+                                            <td>{{ recruteur.mdp }}</td>
+                                            <td>{{ recruteur.type }}</td>
+                                            <td> <img src="{{ asset('picture/' ~ recruteur.photo) }}" alt="" width="130" height="130" > </td>
+                                            <td>{{ recruteur.competence }}</td>
+                                            <td>
+                                                <form method="post" action="{{ path('user_delete', {'id': recruteur.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ recruteur.id) }}">
+                                                    <button class="btn btn-warning">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="5">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $( document ).ready(function() {
+            $("#filtre").change(function(e){
+                var value = $(this).val();
+                /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+                $.ajax({
+                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                    url : "{{ path('filtre',{'type':'val'}) }}".replace("val",value),
+
+
+                    /* La méthode utilisée pour transférer les données est GET */
+                    type : 'GET',
+                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+
+                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                    success : function(retour){
+                        if(retour){
+                            $('#tableac tbody#search').empty();
+                            var result=JSON.parse(retour);
+                            $.each(result, function(i, obj) {
+                                $('#tableac tbody#all').hide();
+                                var statu="candidat";
+                                var Action="recruteur";
+                                var btn='<button  type="button" class="btn btn-success">';
+                                if(obj.status){
+                                    statu="car";
+                                    Action="train";
+                                    btn='<button  type="button" class="btn btn-danger">';
+                                }
+                                $('#tableac tbody#search').append('<tr class="row justify-content-start"><td class="col-3"> '+obj.id+'  </td><td class="col-3">    '+obj.nom+'  </td>><td class="col-3">'+ obj.prenom+'</td><td class="col-3">'+ obj.nomsociete+'</td><td class="col-3">'+ obj.adresse+'</td><td class="col-3">'+ obj.mail+'</td><td class="col-3">'+ obj.numsociete+'</td><td class="col-3">'+ obj.mdp+'</td><td class="col-3">'+ obj.type+'</td><td class="col-3">'+ obj.photo+'</td><td class="col-3">'+ obj.competence+'</td><td class="col-3">'+' <a href="">'+btn+''+Action+'</button></a> </td>');
+                            });
+                        }
+                        else
+                        {
+                            $('#tableac tbody#all').show();
+                            $('#tableac tbody#search').empty();
+                            $('#tableac tbody#search').fadeIn('fast');
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+
+{% endblock %}

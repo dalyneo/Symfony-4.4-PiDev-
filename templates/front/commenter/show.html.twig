@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content %}
+    <div class="section db">
+        <div class="container">
+            <div class="page-title text-center">
+                <div class="heading-holder">
+                    <h1>Espace Forum</h1>
+                </div>
+                <p class="lead">vous pouvez ecrir votre probleme ici</p>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <div class="section lb">
+        <div class="container">
+            <div class="row">
+
+            </div>
+
+            <div class="row">
+                <div class="content col-md-8">
+                    <div class="post-padding">
+                        <div class="content-title">
+                            <h1>Espace forum<span class="badge bg-secondary"></span></h1>
+                            <hr>
+                        </div><!-- end widget-title -->
+
+
+                        <hr class="invis">
+                        <div class="card text-center">
+
+                            <div class="card-body">
+                                {% for c in commenter %}
+                                    <h5 class="card-title">{{c.commentaire}}</h5>
+                                    <h5 class="card-title">{{c.ref}}</h5>
+
+
+                                    <a class="btn btn-danger" href="{{ path ('dcf',{ref:c.ref}) }}">Effacer</a>
+                                    <a class="btn btn-danger" href="{{ path ('uc',{ref:c.ref}) }}">modifier</a>
+                                  {#   <a class="btn btn-danger" href="{{ path ('u',{'id':f.id}) }}">Modifier</a>#}
+
+                                {% endfor %}
+                            </div>
+
+                        </div>
+
+                        {# <div class="card" style="width: 18rem;">
+                            {% for f in forum %}
+                            <img src="upload/cap1.png" class="card-img-top" alt="">
+                            <div class="card-body">
+
+                                <h5 class="card-title">{{ f.sujet }}</h5>
+                                <p class="card-body">{{ f.probleme }}</p>
+
+                                <a class="btn btn-danger" href="{{ path ('d',{'id':f.id}) }}">Effacer</a>
+                                <a class="btn btn-danger" href="{{ path ('u',{'id':f.id}) }}">Modifier</a>
+
+                                {% endfor %}
+                            </div>
+                        </div> #}
+
+
+                        {#          <table class="table table-sm table-dark">
+                            <div class="table-responsive">
+                                <table class="table align-middle">
+                                    <thead>
+                            <tr {% for f in forum %}>
+                                <td>
+                                    <h3>Sujet <span class="badge bg-secondary"></span></h3>
+                                    {{ f.sujet }}
+                                </td>
+                                <td>
+                                    <h3>Probleme <span class="badge bg-secondary"></span></h3>
+                                    {{ f.probleme }}
+                                </td>
+
+
+
+                                <td>
+
+                                    <a class="btn btn-danger" href="{{ path ('d',{'id':f.id}) }}">delete</a>
+
+                                </td>
+                                <td>
+                                    <a href="{{ path ('u',{'id':f.id}) }}">update</a>
+                                </td>
+
+                            </tr {% endfor %}>
+
+
+                                    </thead>
+                                </table>
+                            </div>
+                        </table> #}
+                    </div><!-- end post-padding -->
+                </div><!-- end col -->
+            </div>
+        </div>
+
+
+        <div class="sidebar col-md-4">
+            <div class="widget clearfix">
+                <div class="postpager liststylepost">
+                    <ul class="post-blog">
+
+
+                        <li>
+
+                        </li>
+                        <li>
+
+                        </li>
+                    </ul>
+                </div><!-- end postpager -->
+            </div><!-- end widget -->
+
+
+
+        </div><!-- end col -->
+    </div><!-- end row -->
+    </div><!-- end container -->
+    </div><!-- end section -->
+
+
+    {#<a href="{{ path('forum_index') }}">back to list</a> #}
+
+    {# <a href="{{ path('forum_edit', {'id': forum.id}) }}">edit</a>#}
+
+    {#{{ include('forum/_delete_form.html.twig') }}#}
+{% endblock %}

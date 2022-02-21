@@ -1,0 +1,16 @@
+{% extends 'header.html.twig' %}
+{% block content %}
+    <form action="{{ path('front') }}" method="post">
+{{ form_start(form) }}
+        {{ form_widget(form.mail) }}
+ {{ form_widget(form.mdp) }}
+{{ form_widget(form) }}
+<button class="btn btn-primary btn-block">{{ button_label|default('Login') }}</button>
+    </form>
+{{ form_end(form) }}
+    <a class="btn-primary" href="{{ path('addrec') }}"> Create Compte as Recruteur</a>
+    <br>
+    <a class="btn-primary" href="{{ path('addcand') }}"> Create Compte as Candidat</a>
+    <br>
+    <a class="btn-primary" href="{{ path('addfreel') }}"> Create Compte as Freelancer</a>
+{% endblock %}

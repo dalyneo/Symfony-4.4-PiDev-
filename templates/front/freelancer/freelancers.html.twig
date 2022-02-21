@@ -1,0 +1,28 @@
+{% extends 'header.html.twig' %}
+{% block title %}Freelancer{% endblock %}
+{% block content %}
+    {% for recruteur in recruteurs %}
+        <div class="container">
+            <div class="well">
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="{{ asset('picture/' ~ recruteur.photo) }}" alt="" width="130" height="130" ">
+                    </a>
+                    <div class="media-body">
+                        <div class="col-md-6 col-sm-7 col-xs-12">
+                            <div class="badge freelancer-badge">{{ recruteur.competence }}</div>
+                            <h3><a href="job-single.html" class="text-primary" title="">{{ recruteur.nom }}</a></h3>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta text-center">
+                                    <h4>${{ recruteur.prix }}/hr</h4>
+                                </div>
+                            </div><!-- end col -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %}Categorie List{% endblock %}
+{% block content %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Categorie</h4>
+                        <p class="card-category"> List of categorie</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom</th>
+                                    <th>Photo</th>
+                                    <th>Help</th>
+                                    <th>actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>{{ categorie.id }}</td>
+
+                                    <td>{{ categorie.nom }}</td>
+
+                                    <td><img src="{{ asset('picture/' ~ categorie.photo) }}" alt="" width="130" height="130" "></td>
+
+                                    <td>{{ categorie.help }}</td>
+
+                                    <td> <a href="{{ path('edit', {'id': categorie.id}) }}">edit</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {{ include('back/categorie/_delete_form.html.twig') }}
+ <a href="{{ path('categ') }}">back to list</a>
+ {% endblock %}

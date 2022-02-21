@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List Of Events{% endblock %}
+
+{% block content %}
+
+<div class="main-panel">
+
+
+   <h1>List Of Category</h1>
+
+    <form method="post" action="{{ path('recherchecatt') }}">
+        <input type="text"  placeholder="Recherche" name ="recherche">
+        <input type="submit" value="recherche"  class="btn btn-primary" >
+
+    </form>
+
+
+    <table border="2" class="table table-striped">
+
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+
+            <th>Modify</th>
+            <th>Delete</th>
+
+        </tr>
+
+        <tr {% for c in cat %} >
+
+            <td> {{ c.id }} </td>
+            <td> {{ c.nom }} </td>
+
+            <td ><a href="{{ path('modifiecatt',{'id':c.id}) }}"  class="badge badge-danger">Modify</a></td>
+            <td ><a href="{{ path('supprimecatt',{'id':c.id}) }}"  class="badge badge-danger">Delete</a></td>
+
+
+
+        </tr {% endfor %} >
+    </table>
+    <a href="{{ path('ajoutcatt') }}"><input type="button" value="Add Category" class="btn btn-danger"></a>
+</div>
+
+
+{% endblock %}

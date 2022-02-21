@@ -1,0 +1,121 @@
+{% extends 'header.html.twig' %}
+
+{% block title %}Projet Publier{% endblock %}
+
+{% block content %}
+    <div class="section db">
+        <div class="container">
+            <div class="page-title text-center">
+                <div class="heading-holder">
+                    <h1>Active Jobs</h1>
+                </div>
+                <p class="lead">Listed here 5 active jobs from your clients.</p>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <div class="section lb">
+    <div class="container">
+    <div class="row">
+    <div class="sidebar col-md-4">
+        <div class="post-padding clearfix">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="freelancer-dashboard.html"><span class="glyphicon glyphicon-off"></span>  My Profile</a></li>
+                <li><a href="freelancer-edit-resume.html"><span class="glyphicon glyphicon-user"></span>  Edit Resume</a></li>
+                <li><a href="freelancer-active-jobs.html"><span class="glyphicon glyphicon-briefcase"></span>  Active Jobs</a></li>
+                <li class="active"><a href="freelancer-passed-jobs.html"><span class="glyphicon glyphicon-briefcase"></span>  Passed Jobs</a></li>
+                <li><a href="freelancer-change-password.html"><span class="glyphicon glyphicon-refresh"></span>  Change Password</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-lock"></span>  Logout</a></li>
+            </ul>
+        </div><!-- end widget -->
+    </div><!-- end col -->
+
+        <div class="content col-md-8">
+            <div class="post-padding">
+                <div class="job-title nocover hidden-sm hidden-xs"><h5>Passed Jobs</h5></div>
+                <div class="all-jobs job-listing active-jobs clearfix">
+
+                    <div class="job-tab">
+    {% for projet in projets %}
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="post-media">
+                                    <a href="job-single.html"><img src="{{ asset('picture/' ~ projet.logo) }}" alt="" class="img-responsive img-thumbnail"></a>
+                                </div><!-- end media -->
+                            </div><!-- end col -->
+
+                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                <div class="badge freelancer-badge">Freelancer</div>
+                                <h3><a href="job-single.html" title="">{{ projet.nomProjet  }}</a></h3>
+                                <small>
+                                    <span>Client : <a href="#">{{ projet.user.nom }}</a></span>
+                                    <span>End Date : 14.06.2016</span>
+                                </small>
+                            </div><!-- end col -->
+
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta text-center">
+                                    <h4>$150</h4>
+                                    <a href="{{ path('projet_edit', {'id': projet.id}) }}" class="btn btn-primary btn-sm btn-block">Edit</a>
+                                    <form method="post" action="{{ path('projet_delete', {'id': projet.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ projet.id) }}">
+                                        <button class="btn">Delete</button>
+                                    </form>
+                                </div>
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+
+                    </div><!-- end job-tab -->
+                    {% endfor %}
+                </div><!-- end alljobs -->
+
+            </div><!-- end post-padding -->
+
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div><!-- end col -->
+        </div>
+        </div><!-- end row -->
+        </div><!-- end container -->
+        </div><!-- end section -->
+
+{% endblock %}
+
+{% block js %}
+    <!-- ******************************************
+    DEFAULT JAVASCRIPT FILES
+    ********************************************** -->
+    <script src="/Frontoffice/js/jquery.js"></script>
+    <script src="/Frontoffice/js/bootstrap.min.js"></script>
+    <script src="/Frontoffice/js/all.js"></script>
+    <script src="/Frontoffice/js/custom.js"></script>
+
+    <!-- ******************************************
+    ADD YOUR CUSTOM JAVASCRIPT FILES HERE
+    ********************************************** -->
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+    <script src="/Frontoffice/js/map-upload.js"></script>
+{% endblock %}
+
+
+

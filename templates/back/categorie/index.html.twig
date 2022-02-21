@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie List{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Domaine</h4>
+                            <p class="card-category"> List of Domaine</p>
+                        </div>
+                        {{ json_categories|json_encode()}}
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+
+                                    <thead class=" text-primary">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nom</th>
+                                        <th>Photo</th>
+                                        <th>Help</th>
+                                        <th>actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for categorie in categories %}
+                                        <tr>
+                                            <td>{{ categorie.id }}</td>
+                                            <td>{{ categorie.nom }} </td>
+                                            <td><img src="{{ asset('picture/' ~ categorie.photo) }}" alt="" width="130" height="130" "></td>
+                                            <td>{{ categorie.help }}</td>
+                                            <td>
+                                                <a href="{{ path('edit', {'id': categorie.id}) }}" class="btn btn-primary">Edit</a>
+                                                <form method="post" action="{{ path('delete', {'id': categorie.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categorie.id) }}">
+                                                    <button class="btn btn-warning">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="5">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                               <!--<script type="text/javascript">
+                                    $(document).ready( function () {
+                                        $('#categ').DataTable({
+                                            data: $.parseJSON('{{ json_categories | raw }}')
+                                        });
+                                    } );
+                                </script>-->
+                                <a class="btn btn-success" href="{{ path('new') }}">Create new</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

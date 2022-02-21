@@ -1,0 +1,27 @@
+{% extends'header.html.twig' %}
+{% block content %}
+    <table>
+        <thead>
+        <tr>
+            <th>test</th>
+            <th>Name</th>
+            <th>Last name</th>
+            <th></th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for certificat in certificats %}
+        <tr>
+           <td>{{ certificat.nom }}</td>
+            <td>{{ certificat.idrecruteur.nom }}</td>
+            <td>{{ certificat.idrecruteur.prenom }}</td>
+            <td>
+                <a class="btn btn-success" href="{{ path('listo2' , {'id':certificat.id}) }}">obtain certificat</a>
+            </td>
+        </tr>
+
+    {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

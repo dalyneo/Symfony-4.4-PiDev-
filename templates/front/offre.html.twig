@@ -1,0 +1,44 @@
+{% extends 'header.html.twig' %}
+{% block title %}Offre{% endblock %}
+{% block content %}
+            {% for offre in offres %}
+       <div class="container">
+          <div class="well">
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="{{ asset('picture/' ~ offre.logo) }}" alt="" width="130" height="130" ">
+                </a>
+                 <div class="media-body">
+                    <div class="col-md-6 col-sm-7 col-xs-12">
+                        <div class="badge freelancer-badge">{{ offre.idcategoriy.nom }}</div>
+                        <h3><a href="job-single.html" class="text-primary" title="">{{ offre.nom }}</a></h3>
+                        <p class="text-warning">{{ offre.description }}</p>
+                        {% if   app.session.get('type')=="candidat" %}
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="text-center">
+                                    <a href="{{ path('make',{'id': offre.id }) }}" class="btn btn-primary">Make Offer</a>
+                                </div>
+                            </div><!-- end col -->
+                        {% elseif app.session.get('id')==null %}
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="text-center">
+                                    <a href="{{ path('make',{'id': offre.id }) }}" class="btn btn-primary">Make Offer</a>
+                                </div>
+                            </div><!-- end col -->
+                        {% elseif app.session.get('id')==offre.idrecruteur.id %}
+                            <a href="{{ path('edit1',{'id': offre.id }) }}" class="btn btn-primary" > Modifier</a>
+                        {% else %}
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+            {% endfor %}
+    {% if  app.session.get('type')=="recruteur" %}
+<div style="text-align: center">
+        <a class="btn btn-info" href="{{ path('addjob') }}">Post Offre</a>
+</div>
+    {% endif %}
+{% endblock %}
+

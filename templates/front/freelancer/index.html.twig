@@ -1,0 +1,57 @@
+{% extends 'header.html.twig' %}
+
+{% block title %}Freelancer index{% endblock %}
+
+{% block content %}
+    <h1>Freelancer index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Password</th>
+                <th>Photo</th>
+                <th>Photocover</th>
+                <th>Title</th>
+                <th>Linkedin</th>
+                <th>Skills</th>
+                <th>Country</th>
+                <th>Prix</th>
+                <th>Education</th>
+                <th>Experience</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for freelancer in freelancers %}
+            <tr>
+                <td>{{ freelancer.id }}</td>
+                <td>{{ freelancer.email }}</td>
+                <td>{{ freelancer.name }}</td>
+                <td>{{ freelancer.password }}</td>
+                <td>{{ freelancer.photo }}</td>
+                <td>{{ freelancer.photocover }}</td>
+                <td>{{ freelancer.title }}</td>
+                <td>{{ freelancer.linkedin }}</td>
+                <td>{{ freelancer.skills }}</td>
+                <td>{{ freelancer.country }}</td>
+                <td>{{ freelancer.prix }}</td>
+                <td>{{ freelancer.education }}</td>
+                <td>{{ freelancer.experience }}</td>
+                <td>
+                    <a href="{{ path('freelancer_show', {'id': freelancer.id}) }}">show</a>
+                    <a href="{{ path('freelancer_edit', {'id': freelancer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('freelancer_new') }}">Create new</a>
+{% endblock %}

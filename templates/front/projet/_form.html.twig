@@ -1,0 +1,186 @@
+{% extends 'header.html.twig' %}
+{% block content %}
+{{ form_start(form) }}
+    <div class="section db">
+        <div class="container">
+            <div class="page-title text-center">
+                <div class="heading-holder">
+                    <h1>Submit a Job</h1>
+                </div>
+                <p class="lead">Start your awesome project! Complete all fileds and submit</p>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <div class="section lb">
+        <div class="container">
+            <div class="row">
+                <div class="content col-md-8">
+
+                    <div class="post-padding">
+                        <div class="job-tab submitform">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <h3>Free Listing &nbsp;&nbsp;<small>Submit a free project.</small></h3>
+                                    <small>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</small>
+                                </div><!-- end col -->
+
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <div class="job-meta text-center">
+                                        <h4>Free</h4>
+                                        <a href="#submit" class="btn btn-primary btn-sm btn-block">Select</a>
+                                    </div>
+                                </div><!-- end col -->
+                            </div><!-- end row -->
+                        </div><!-- end job-tab -->
+
+                        <hr>
+
+                        <div class="job-tab submitform">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <h3>Premium Listing &nbsp;&nbsp;<small>Submit 10 Project</small></h3>
+                                    <small>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</small>
+                                </div><!-- end col -->
+
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <div class="job-meta text-center">
+                                        <h4>$20.99</h4>
+                                        <a href="#submit" class="btn btn-primary btn-sm btn-block">Select</a>
+                                    </div>
+                                </div><!-- end col -->
+                            </div><!-- end row -->
+                        </div><!-- end job-tab -->
+
+                        <hr>
+
+                        <div class="job-tab submitform">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <h3>Business Listing &nbsp;&nbsp;<small>Submit Unlimited Projects</small></h3>
+                                    <small>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</small>
+                                </div><!-- end col -->
+
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <div class="job-meta text-center">
+                                        <h4>$60.99</h4>
+                                        <a href="#submit" class="btn btn-primary btn-sm btn-block">Select</a>
+                                    </div>
+                                </div><!-- end col -->
+                            </div><!-- end row -->
+                        </div><!-- end job-tab -->
+                    </div><!-- end post-padding -->
+
+                    <div class="post-padding">
+
+                        <div class="job-title hidden-sm hidden-xs"><h5>Job Details</h5></div>
+                        <form id="submit" class="submit-form">
+                            <hr class="invis">
+
+
+
+
+
+                            <div class="row">
+
+                            </div><!-- end row -->
+
+
+
+
+
+
+
+
+                            <hr class="invis">
+
+
+
+<hr class="invis">
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <label class="control-label">Project Title <small>Enter a short title for your project</small></label>
+        {{ form_widget(form.nomProjet,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+</div><!-- end row -->
+
+<hr class="invis">
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <label class="control-label">Project Description <small>Enter long description for your project</small></label>
+        {{ form_widget(form.projetDescription,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div><!-- end row -->
+
+<hr class="invis">
+
+<div class="row">
+
+    <div class="col-md-6 col-sm-12">
+        <label class="control-label">Job Type <small>Fulltime, Freelancer etc. (optional)</small></label>
+        {{ form_widget(form.jobType,{'attr':{'class':'form-control'}} ) }}
+    </div>
+</div><!-- end row -->
+
+<hr class="invis">
+
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <label class="control-label">Job Salary <small>Select your max salary</small></label>
+        {{ form_widget(form.jobSalary,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <label class="control-label">Job Time <small>Select your max time. (optional)</small></label>
+        {{ form_widget(form.jobTime,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+</div><!-- end row -->
+
+<hr class="invis">
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <label class="control-label">logo <small>Enter a short title for your project</small></label>
+        {{ form_widget(form.logo,{'attr':{'class':'form-control'}}) }}
+
+
+    </div>
+</div><!-- end row -->
+
+
+<hr class="invis">
+
+{{ form_widget(form) }}
+<hr>
+<button class="btn btn-primary btn-block">Submit Form</button>
+</form>
+</div><!-- end post-padding -->
+</div><!-- end col -->
+</div>
+</div>
+    </div>
+
+
+            {{ form_end(form) }}
+
+{% endblock %}
+{% block js %}
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/all.js"></script>
+    <script src="/js/custom.js"></script>
+
+    <!-- ******************************************
+    ADD YOUR CUSTOM JAVASCRIPT FILES HERE
+    ********************************************** -->
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+    <script src="/js/map-upload.js"></script>
+{% endblock %}

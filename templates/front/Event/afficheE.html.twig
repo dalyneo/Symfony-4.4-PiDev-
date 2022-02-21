@@ -1,0 +1,184 @@
+{% extends 'header.html.twig' %}
+
+{% block title %}List Of Events{% endblock %}
+
+{% block content %}
+
+    <div class="section db">
+        <div class="container">
+            <div class="page-title text-center">
+                <div class="heading-holder">
+                    <h1>List Of Events</h1>
+                </div>
+
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    {% if app.session.flashBag.has('participe') %}
+        <div class="alert alert-danger">
+            {% for msg in app.session.flashBag.get('participe') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div>
+        <form method="post" action="{{ path('rechercheevent') }}">
+            <input type="text"  placeholder="Recherche" name ="recherche">
+            <input type="submit" value="recherche"  class="btn btn-primary" >
+
+        </form>
+    </div>
+
+
+
+
+    <div class="container">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+
+            {% for e in event %}
+
+
+                <div class="col-xs1 col-sm4" >
+                    <div class="post-media">
+                        <a href="freelancer-profile.html"><img src="upload/about_02.jpg" alt="" class="img-responsive img-thumbnail"></a>
+                    </div><!-- end media -->
+                </div><!-- end col -->
+
+                <div class="badge part-badge"></div>
+
+
+                <h3><a href="freelancer-profile.html" title="">{{ e.nom }}</a></h3>
+
+                <div>
+                    <small>
+                        <span>Name of  Recruteur : <a href="#">{{ e.idrecruteur.nom }}</a></span>
+                    </small>
+                </div>
+
+                <small>
+                    <span>Category : <a href="#">{{ e.idcat.nom }}</a></span>
+                </small>
+                <small>
+                    <span>Date : <a href="#">{{ e.date|date('m/d/Y') }}</a></span>
+                </small>
+                <div>
+                    <small>
+                        <span>Description : <a href="#">{{ e.description }}</a></span>
+                    </small>
+                </div>
+
+                <div>
+                    <small>
+                        <span>Number of Participants : <a href="#">{{ e.nbp }}/20</a></span>
+                    </small>
+                </div>
+
+                {#  <div>
+                                <small>
+                                    <span>Nombre De Like : <a href="#">{{ e.jaime }}</a></span>
+                                </small>
+                            </div> #}
+                {% if app.session.get('id')==null %}
+            {% else %}
+                <div>
+
+                    </li>
+                    <div class="like">
+
+                        <a href="{{ path('likeevent',{'id':e.id}) }}" class="fa fa fa-thumbs-up">Like({{ e.jaime }})</a>
+                        <a href="{{ path('dislikeevent',{'id':e.id}) }}" class="fa fa fa-thumbs-down">Dislike({{ e.jaimepas }})</a>
+                    </div>
+                    </ul>
+
+                </div>
+{% endif %}
+                {#  <div>
+
+                                </li>
+                                <div class="dislike">
+                                    <a href="#" class="fa fa fa-thumbs-down">Dislike</a>
+                                </div>
+                                </ul>
+
+                            </div>
+                #}
+
+
+
+
+                {% if app.session.get('id')==e.idrecruteur.id %}
+                <div>
+                    <a href="{{ path('modifieevent',{'id':e.id}) }}" class="btn btn-primary">Modifier</a>
+                    <a href="{{ path('supprimeevent',{'id':e.id}) }}" class="btn btn-primary">Supprimer</a>
+                {% elseif app.session.get('type')=="candidat" %}
+                    {% if e.nbp == 20 %}
+                        <p ><strong >Vous ne pouvez pas participer à cette evenement !!</strong></p>
+                    {% else %}
+                        <a href="{{ path('participeevent',{'id':e.id}) }}" class="btn btn-primary">Participer</a>
+                    {% endif %}
+
+                    {% else %}
+                {% endif %}
+                </div>
+
+            {% endfor %}
+
+            <div class="text-center">
+
+                {{ knp_pagination_render(event) }}
+
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+
+    {#  </div><!-- end col -->
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <div class="job-meta">
+                            <i class="fa fa-map-marker"></i>
+                            <p>Antalya</p>
+                            <small>Turkey</small>
+                        </div><!-- end meta -->
+                    </div><!-- end col -->
+
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <div class="job-meta text-center">
+                            <h4>$20/hr</h4>
+                            <a href="freelancer-profile.html" class="btn btn-primary btn-sm btn-block">View Profile</a>
+                        </div>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end job-tab -->
+    #}
+
+
+
+
+
+{% endblock %}
+
+ {#    {% block js %}
+        <!-- ******************************************
+        DEFAULT JAVASCRIPT FILES
+        ********************************************** -->
+        <script src="/js/jquery.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/all.js"></script>
+        <script src="/js/custom.js"></script>
+        <script src="/js/filter.js"></script>
+
+        <!-- ******************************************
+        ADD YOUR CUSTOM JAVASCRIPT FILES HERE
+        ********************************************** -->
+
+
+    {% endblock %}  #}
+
+

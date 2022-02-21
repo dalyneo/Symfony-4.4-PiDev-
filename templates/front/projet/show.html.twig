@@ -1,0 +1,165 @@
+{% extends 'header.html.twig' %}
+
+{% block title %}Projet{% endblock %}
+
+{% block content %}
+    <div class="sectionnr nopadding wb">
+        <div id="map"></div>
+        <div class="container">
+            <form class="submit-form customform">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search"></i></span>
+                            <input type="text" class="form-control" placeholder="Search Keywords"id="text" onkeypress="myFunction(event)">
+                        </div>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+
+                <div class="row listcheckbox">
+                    <div class="col-md-9" id="zone">
+
+                    </div>
+
+                </div><!-- end row -->
+            </form>
+        </div><!-- end container -->
+    </div><!-- end section -->
+    <script>
+        /* In this example, we use a cross-browser solution, because the keyCode property does not work on the onkeypress event in Firefox. However, the which property does.
+
+        Explanation of the first line in the function below: if the browser supports event.which, then use event.which, otherwise use event.keyCode */
+
+        function myFunction(event) {
+            var y = String.fromCharCode(event.which);
+
+            document.getElementById("that").innerHTML =     "";
+
+
+
+
+
+            $.get("http://127.0.0.1:8000/searchproject?id="+document.getElementById("text").value+y, function(data, status){
+
+                var t="";
+                for (var i = 0; i < data.projects.length; i++) {
+                    t =     t+
+                        '<div >'+
+                        '<div >'+
+                        '<div >'+
+                        ' <div >'+
+                        '  <a href="job-single.html"><img style="width: 150px;height: 150px" src="/picture/'+data.projects[i].logo+'" alt="" class="img-responsive img-thumbnail"></a>'+
+                        '  </div>'+
+                        ' </div>'+
+
+                        ' <div >'+
+                        '<div >Freelancer</div>'+
+                        '<h3><a href="job-single.html" title="">'+data.projects[i].projetDescription +'</a></h3>'+
+                        '<small>'+
+                        '<span>Publisher : <a href="#">'+data.projects[i].nomProjet+'</a></span>'+
+                        '<span>In : <a href="#">Article Writing</a></span>'+
+                        '<span>Date : 23.06.2016</span>'+
+                        '</small>'+
+                        '</div><!-- end col -->'+
+
+                        '<div >'+
+                        '<div>'+
+                        '<p>Melbourne</p>'+
+                        '<small>Australia</small>'+
+                        '</div><!-- end meta -->'+
+                        '</div><!-- end col -->'+
+
+                        ' <div >'+
+                        '<div >'+
+                        '<h4>$100/mo</h4>'+
+                        '<a onclick="myF('+data.projects[i].id+')" >Make Offer</a>'+
+                        '</div>'+
+                        '</div><!-- end col -->'+
+                        '</div><!-- end col -->'+
+                        '</div><!-- end col -->';
+
+
+
+                }
+                document.getElementById("xdd").innerHTML =     t;
+                console.log(t);
+
+            });
+        }
+    </script>
+    <div name="xdd" id="xdd">
+    </div>
+    {% for projet in projets %}
+
+    <div class="section lb" >
+        <div class="container">
+
+            <div class="all-jobs job-listing clearfix" id ="that">
+        <div>
+                <div class="job-tab">
+                    <div class="row" >
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="post-media">
+                                <a href="job-single.html"><img src="{{ asset('picture/' ~ projet.logo) }}" alt="" class="img-responsive img-thumbnail"></a>
+                            </div><!-- end media -->
+                        </div><!-- end col -->
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="badge freelancer-badge">Freelancer</div>
+                            <h3><a href="job-single.html" title="">{{ projet.projetDescription }}</a></h3>
+                            <small>
+                                <span>Publisher : <a href="#">{{ projet.nomProjet }}</a></span>
+                                <span>In : <a href="#">Article Writing</a></span>
+                                <span>Date : 23.06.2016</span>
+                            </small>
+                        </div><!-- end col -->
+
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="job-meta">
+                                <p>Melbourne</p>
+                                <small>Australia</small>
+                            </div><!-- end meta -->
+                        </div><!-- end col -->
+
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="job-meta text-center">
+                                <h4>$100/mo</h4>
+                                <a onclick="myF({{projet.id }})" class="btn btn-primary btn-sm btn-block">Make Offer</a>
+
+                            </div>
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                </div><!-- end job-tab -->
+        <script>
+            function myF(a){
+                $.get("http://127.0.0.1:8000/makeoffre?id="+a), function(data) {
+                    alert("offre bien récus");
+                };
+            }
+        </script>
+         {% endfor %}
+
+            </div><!-- end alljobs -->
+    </div><!-- end section -->
+            <div class="loadmorebutton text-center clearfix">
+                <a href="#" class="btn btn-primary" id="loadMore">Load More Jobs</a>
+            </div><!-- end loadmore -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+<script src="/Frontoffice/js/jquery.js"></script>
+<script src="/Frontoffice/js/bootstrap.min.js"></script>
+<script src="/Frontoffice/js/all.js"></script>
+<script src="/Frontoffice/js/custom.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<!-- MAP & CONTACT -->
+<script src="/Frontoffice/js/map-freelancer.js"></script>
+<script src="/Frontoffice/js/map-upload.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}

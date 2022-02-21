@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Certificat{% endblock %}
+
+{% block content %}
+    <h1>Create new Certificat</h1>
+
+    {{ include('back/certificat/_form.html.twig') }}
+
+    <a href="{{ path('certificat_index_back') }}">back to list</a>
+{% endblock %}

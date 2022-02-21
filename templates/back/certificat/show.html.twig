@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Certificat{% endblock %}
+
+{% block content %}
+    <h1>Certificat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ certificat.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ certificat.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('certificat_index_back') }}">back to list</a>
+
+    <a href="{{ path('certificat_edit', {'id': certificat.id}) }}">edit</a>
+
+    {{ include('back/certificat/_delete_form.html.twig') }}
+{% endblock %}

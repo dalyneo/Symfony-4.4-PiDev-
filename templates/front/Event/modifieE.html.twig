@@ -1,0 +1,60 @@
+{% extends 'header.html.twig' %}
+
+{% block title %}
+    Page Modifier
+{% endblock %}
+
+{% block content %}
+
+    <div class="section db">
+        <div class="container">
+            <div class="page-title text-center">
+                <div class="heading-holder">
+                    <h1>Modifier Evenement </h1>
+                </div>
+
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+
+
+    {{ form_start(form) }}
+    <div class="form-group">
+
+        <LABEL>Nom De L'evenement*:</LABEL>
+        {{ form_widget(form.nom, {'attr':{'class':'form-control' }})}}
+    </div>
+
+    <div class="form-group">
+
+        <LABEL>Categorie De L'evenement*:</LABEL>
+
+        {{ form_widget(form.idcat)}}
+    </div>
+
+
+    <div class="form-group">
+
+        <LABEL>Date De L'evenement*:</LABEL>
+
+        {{ form_widget(form.date)}}
+    </div>
+
+    <div class="form-group">
+
+        <LABEL>Description De L'evenement*:</LABEL>
+
+        {{ form_widget(form.description, {'attr':{'class':'form-control' }})}}
+    </div>
+
+
+
+
+    {#  <input type="submit" value="Modifier Evenement" class="btn btn-danger">#}
+
+
+
+    {{ form_end(form) }}
+
+{% endblock %}

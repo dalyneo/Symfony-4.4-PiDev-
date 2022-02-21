@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reclamations List{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Reclamations</h4>
+                            <p class="card-category"> List of Reclamations</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+
+                                    <thead class=" text-primary">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nom du client</th>
+                                        <th>Nom</th>
+                                        <th>Description</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for reclamation in reclamations %}
+                                        <tr>
+                                            <td>{{ reclamation.id }}</td>
+                                            <td>{{ reclamation.recruteur.nom }} </td>
+                                            <td>{{ reclamation.nom}} </td>
+                                            <td>{{ reclamation.description }}</td>
+
+                                            <td>
+                                                <form method="post" action="{{ path('recla_delete', {'id': reclamation.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reclamation.id) }}">
+                                                    <button class="btn btn-warning">Delete</button>
+                                                </form>
+                                            </td>
+
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="5">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

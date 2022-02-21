@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test{% endblock %}
+
+{% block content %}
+    <h1>Test</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ test.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ test.nom }}</td>
+            </tr>
+            <tr>
+                <th>Q1</th>
+                <td>{{ test.q1 }}</td>
+            </tr>
+            <tr>
+                <th>R1</th>
+                <td>{{ test.r1 }}</td>
+            </tr>
+            <tr>
+                <th>Q2</th>
+                <td>{{ test.q2 }}</td>
+            </tr>
+            <tr>
+                <th>R2</th>
+                <td>{{ test.r2 }}</td>
+            </tr>
+            <tr>
+                <th>Q3</th>
+                <td>{{ test.q3 }}</td>
+            </tr>
+            <tr>
+                <th>R3</th>
+                <td>{{ test.r3 }}</td>
+            </tr>
+            <tr>
+                <th>Q4</th>
+                <td>{{ test.q4 }}</td>
+            </tr>
+            <tr>
+                <th>R4</th>
+                <td>{{ test.r4 }}</td>
+            </tr>
+            <tr>
+                <th>Q5</th>
+                <td>{{ test.q5 }}</td>
+            </tr>
+            <tr>
+                <th>R5</th>
+                <td>{{ test.r5 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('test_index_back') }}">back to list</a>
+
+    <a href="{{ path('test_edit', {'id': test.id}) }}">edit</a>
+
+    {{ include('back/test/_delete_form.html.twig') }}
+{% endblock %}

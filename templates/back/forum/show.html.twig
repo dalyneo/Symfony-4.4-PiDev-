@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-plain">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title mt-0"> Les commentaires</h4>
+
+                        </div>
+                    </div>
+                </div>
+                                <hr class="invis">
+                                <div class="card text-center">
+
+                                        <div class="col-md-12">
+                                            <div class="card card-plain">
+                                                <div class="card-header card-header-primary">
+                                                    <h4 class="card-title mt-0"> {{forum.sujet}}</h4>
+
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+
+
+                                                        <div class="form-group">
+
+                                                        </div>
+
+
+                                        <p class="card-text">{{forum.probleme}}</p>
+
+
+
+
+                                    </div>
+
+                                    <div class="card-body">
+                                        {% for c in forum.commenters %}
+                                            <p class="card-title">Note:{{c.rating}}</p>
+                                            <h5 class="card-title">{{c.commentaire  | raw}}</h5>
+                                              <a class="btn btn-primary" href="{{ path ('dca',{ref:c.ref}) }}">Effacer</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

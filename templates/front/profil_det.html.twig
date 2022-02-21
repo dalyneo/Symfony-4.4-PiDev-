@@ -1,0 +1,36 @@
+{% extends 'header.html.twig' %}
+{% block content %}
+    <div class="parallax section parallax-off" style="background-image:url('/Frontoffice/upload/fbg.jpg');">
+        <div class="container">
+            <div class="page-title text-center">
+                <img src="{{ asset('picture/' ~ app.session.get('photo')) }}" alt="" class="profile-image img-circle img-responsive">
+                <div class="heading-holder">
+                    <h1>{{ app.session.get('nom') }}</h1>
+                </div>
+                <p class="lead">{{ app.session.get('type') }}</p>
+                <ul class="list-inline social-small">
+                    <li><a href="#"><i class="fa fa-link"></i></a></li>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                </ul>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+    <div class="section lb">
+        <div class="container">
+            <div class="row">
+                <div class="content col-md-8">
+                    <div class="post-padding">
+                        <div class="single-content">
+                            <h4 class="small-title">About me?</h4>
+                            <p class="lead">{{ app.session.get('competence') }}</p>
+                        </div>
+                    </div><!-- end post-padding -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

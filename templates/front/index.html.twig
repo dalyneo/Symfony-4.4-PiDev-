@@ -1,0 +1,150 @@
+{% extends 'header.html.twig' %}
+{% block title %}
+    Home Page
+{% endblock %}
+{% block content %}
+    <div class="section hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="home-title text-center">
+                        <h3>I am Employer</h3>
+                        <p>If you are looking new employees for your business, this is right place for you! Open free profile. Once you open your profile, you can give new ads for free.</p>
+                        <a href="freelancer-search.html" class="btn btn-primary">Find Your Worker</a>
+                    </div>
+                </div><!-- end col -->
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="home-title rightside text-center">
+                        <h3>I am Freelancer</h3>
+                        <p>Do you want to earn money with YourJob? Share skills and experiences to your customers and earn money. Open a free account and fill out your profile information.</p>
+                        <a href="job-search.html" class="btn btn-primary">Browse Your Job</a>
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+    <div id="stories" class="storiesWrapper"></div>
+    <!-- demo styles -->
+    <link rel="stylesheet" href="/Frontoffice/story/demo/style.css">
+
+    <!-- lib styles -->
+    <link rel="stylesheet" href="/Frontoffice/story/dist/zuck.min.css">
+
+    <!-- lib skins -->
+    <link rel="stylesheet" href="/Frontoffice/story/dist/skins/snapgram.css">
+    <link rel="stylesheet" href="/Frontoffice/story/dist/skins/vemdezap.css">
+    <link rel="stylesheet" href="/Frontoffice/story/dist/skins/facesnap.css">
+    <link rel="stylesheet" href="/Frontoffice/story/dist/skins/snapssenger.css">
+
+    <script src="/Frontoffice/story/dist/zuck.min.js"></script>
+    <script src="/Frontoffice/story/demo/script.js"></script>
+
+    <script>
+        {%for offre in offres %}
+        var currentSkin = getCurrentSkin();
+        var stories = new Zuck('stories', {
+            backNative: true,
+            previousTap: true,
+            skin: currentSkin['name'],
+            autoFullScreen: currentSkin['params']['autoFullScreen'],
+            avatars: currentSkin['params']['avatars'],
+            paginationArrows: currentSkin['params']['paginationArrows'],
+            list: currentSkin['params']['list'],
+            cubeEffect: currentSkin['params']['cubeEffect'],
+            localStorage: true,
+            stories: [
+
+                Zuck.buildTimelineItem(
+                    "daly",
+                    "{{ asset('picture/' ~ offre.idrecruteur.photo) }}",
+                    "{{ offre.idrecruteur.mail }}",
+                    "",
+                    timestamp(),
+                    [
+                        ["ramon-1", "photo", 3, "{{ asset('picture/' ~ offre.logo) }}", 'aa', '', false, false, timestamp()],
+                    ]
+                )
+
+                ,
+            ]
+        });
+        {% endfor %}
+    </script>
+    <div class="section wb">
+        <div class="container">
+            <div class="section-title text-center clearfix">
+                <h4>Our Domaine</h4>
+            </div>
+                <div class="row">
+            {% for categorie in categories %}
+                <div class="col-sm-3 col-xs-12">
+                    <div class="service-tab">
+                        <div class="post-media">
+                            <a href="{{ path('type',{'type':categorie.id}) }}" ><img src="{{ asset('picture/' ~ categorie.photo) }}" alt="" class="img-responsive"></a>
+                        </div>
+                        <div class="service-title">
+                            <h4><a href="{{ path('type',{'type': categorie.id }) }}" >{{ categorie.nom }}</a></h4>
+                        </div>
+                    </div><!-- end service-tab -->
+                </div><!-- end col -->
+                {% endfor %}
+                </div>
+             {% if(app.session.get('id')==null) %}
+                  <div id="modal-wrapper" class="modal">
+                <form class="modal-content animate"  method="post" >
+                   {{ form_start(form) }}
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp"></span>
+                        <img src="/Frontoffice/images/1.png" alt="Avatar" class="avatar">
+                        <h1 style="text-align:center">Login</h1>
+                    </div>
+                    <div class="container">
+                        {{ form_widget(form.mail)}}
+                        {{ form_widget(form.mdp)}}
+                        {{ form_widget(form) }}
+                        <button class="btn btn-primary btn-block">{{ button_label|default('Login') }}</button>
+                    </div>
+                   {{ form_end(form) }}
+                </form>
+                {% elseif (app.session.get('type')=='candidat') %}
+                          <div id="modal-wrapper" class="modal">
+                              <form class="modal-content animate"  method="post" >
+                                  {{ form_start(form) }}
+                                  <div class="imgcontainer">
+                                      <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp"></span>
+                                      <img src="/Frontoffice/images/1.png" alt="Avatar" class="avatar">
+                                      <h1 style="text-align:center">Login</h1>
+                                  </div>
+                                  <div class="container">
+                                      {{ form_widget(form.mail)}}
+                                      {{ form_widget(form.mdp)}}
+                                      {{ form_widget(form) }}
+                                      <button class="btn btn-primary btn-block">{{ button_label|default('Login') }}</button>
+                                  </div>
+                                  {{ form_end(form) }}
+
+
+
+                              </form>
+                             </div>
+                     {% elseif app.session.get('type')=='recruteur'%}
+                         <a href="{{ path('addjob') }}" class="btn btn-primary">Submit Your Offre</a>
+                         {% else %}
+
+{% endif %}
+            <script>
+                // If user clicks anywhere outside of the modal, Modal will close
+
+                var modal = document.getElementById('modal-wrapper');
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            </script>
+            </div><!-- end loadmore -->
+            </div><!-- end container -->
+        </div><!-- end section -->
+
+{% endblock %}
